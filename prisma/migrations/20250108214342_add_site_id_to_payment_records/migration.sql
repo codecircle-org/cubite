@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Payment` ADD COLUMN `siteId` VARCHAR(191) NOT NULL DEFAULT '';

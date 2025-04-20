@@ -1,0 +1,151 @@
+# PROPRIETARY SOFTWARE LICENSE AGREEMENT
+
+This Proprietary Software License Agreement (the "Agreement") is a legally binding contract between you (either an individual or a single entity, referred to hereinafter as "Licensee") and Amir Tadrisi (referred to hereinafter as "Licensor").
+
+## EFFECTIVE DATE
+
+This Agreement is effective as of the date of Licensee's first access to or use of the Software.
+
+## DEFINITIONS
+
+For the purposes of this Agreement, the following terms shall have the meanings defined below:
+
+1. **"Software"** means the computer programs, source code, object code, and any associated documentation, updates, upgrades, modifications, and enhancements provided by Licensor under this Agreement.
+
+2. **"Derivative Works"** means any work that is based upon the Software, such as modifications, enhancements, improvements, or any other form in which the Software may be recast, transformed, or adapted.
+
+3. **"Intellectual Property Rights"** means all proprietary rights, including but not limited to: patents, patent applications, trademarks, service marks, trade names, copyrights, trade secrets, know-how, moral rights, and any other intellectual property rights recognized in any country or jurisdiction.
+
+4. **"Commercial Purpose"** means any use of the Software intended for or directed toward commercial advantage, monetary compensation, or personal financial gain.
+
+## GRANT OF LICENSE
+
+Subject to the terms and conditions of this Agreement, Licensor hereby grants to Licensee a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to use the Software solely for the purposes explicitly authorized in writing by Licensor.
+
+## RESTRICTIONS
+
+Licensee explicitly agrees to the following restrictions:
+
+1. **Commercial Use Prohibition**: Licensee shall not use the Software, in whole or in part, for any Commercial Purpose without prior explicit written authorization from Licensor. Such authorization, if granted, may be subject to additional terms and fees at Licensor's sole discretion.
+
+2. **Modification Prohibition**: Licensee shall not modify, adapt, alter, translate, decompile, disassemble, reverse engineer, or create any Derivative Works from the Software, in whole or in part, without prior explicit written permission from Licensor.
+
+3. **Distribution Restriction**: Licensee shall not distribute, publish, rent, lease, sublicense, sell, assign, transfer, pledge, or otherwise dispose of or encumber the Software or any rights thereto.
+
+4. **Confidentiality Obligation**: Licensee acknowledges that the Software contains valuable trade secrets and confidential information of Licensor. Licensee agrees to maintain the confidentiality of the Software and to use at least the same degree of care to protect the confidentiality of the Software as Licensee would use to protect its own confidential information.
+
+5. **Security Measures**: Licensee shall not circumvent, disable, or interfere with any security features or protective measures embedded in or applied to the Software.
+
+6. **Access Control**: Licensee shall implement reasonable measures to ensure that access to the Software is limited to authorized personnel who need such access to perform their job functions.
+
+7. **Competitive Development**: Licensee shall not use the Software to develop software or services that compete with the Software or any other products or services offered by Licensor.
+
+## LICENSOR RIGHTS
+
+1. **Commercial Exploitation**: Licensor expressly reserves the right to commercialize, market, distribute, sell, license, or otherwise exploit the Software to any third party, including competitors of Licensee, without any obligation to notify Licensee or obtain Licensee's consent.
+
+2. **Intellectual Property Ownership**: All Intellectual Property Rights in and to the Software shall remain the exclusive property of Licensor. Licensee shall not acquire any ownership interest in the Software under this Agreement.
+
+3. **Inspection Rights**: Upon reasonable prior notice, Licensor reserves the right to inspect Licensee's use of the Software to ensure compliance with the terms of this Agreement.
+
+## DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LICENSOR EXPLICITLY DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO:
+
+1. ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT;
+
+2. ANY WARRANTY REGARDING THE ACCURACY, RELIABILITY, OR COMPLETENESS OF THE SOFTWARE;
+
+3. ANY WARRANTY THAT THE SOFTWARE WILL OPERATE ERROR-FREE, UNINTERRUPTED, OR FREE FROM HARMFUL COMPONENTS;
+
+4. ANY WARRANTY THAT DEFECTS IN THE SOFTWARE WILL BE CORRECTED;
+
+5. ANY WARRANTY REGARDING THE SECURITY OF THE SOFTWARE OR DATA PROCESSED BY THE SOFTWARE.
+
+LICENSEE ACKNOWLEDGES THAT ANY USE OF THE SOFTWARE IS AT LICENSEE'S SOLE RISK. LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL MEET LICENSEE'S REQUIREMENTS OR THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE.
+
+## SECURITY DISCLAIMER
+
+LICENSEE EXPRESSLY ACKNOWLEDGES AND AGREES THAT:
+
+1. NO SECURITY GUARANTEES OR WARRANTIES ARE PROVIDED IF THE SOFTWARE IS NOT INSTALLED, DEPLOYED, MAINTAINED, OR SUPERVISED BY LICENSOR;
+
+2. LICENSOR SHALL HAVE NO RESPONSIBILITY OR LIABILITY FOR ANY SECURITY BREACHES, DATA LOSS, OR OTHER DAMAGES RESULTING FROM LICENSEE'S FAILURE TO IMPLEMENT APPROPRIATE SECURITY MEASURES OR FROM ANY UNAUTHORIZED MODIFICATIONS TO THE SOFTWARE;
+
+3. LICENSEE BEARS SOLE RESPONSIBILITY FOR IMPLEMENTING APPROPRIATE SECURITY MEASURES IN CONNECTION WITH ITS USE OF THE SOFTWARE.
+
+## LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES WHATSOEVER (INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, LOSS OF DATA, BUSINESS INTERRUPTION, OR ANY OTHER COMMERCIAL DAMAGES OR LOSSES) ARISING OUT OF OR RELATED TO THIS AGREEMENT OR LICENSEE'S USE OF OR INABILITY TO USE THE SOFTWARE, HOWEVER CAUSED, REGARDLESS OF THE THEORY OF LIABILITY AND EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+IN JURISDICTIONS THAT DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, LICENSOR'S LIABILITY SHALL BE LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW.
+
+## INDEMNIFICATION
+
+Licensee agrees to indemnify, defend, and hold harmless Licensor, its affiliates, officers, directors, employees, consultants, and agents from and against any and all claims, liabilities, damages, losses, costs, expenses, and fees (including reasonable attorneys' fees) that arise from or relate to: (a) Licensee's use of the Software; (b) Licensee's violation of this Agreement; or (c) Licensee's violation of any rights of any third party in connection with the Software.
+
+## TERM AND TERMINATION
+
+1. **Term**: This Agreement shall commence on the Effective Date and continue until terminated as provided herein.
+
+2. **Termination for Breach**: This Agreement and the license granted hereunder shall automatically terminate without notice if Licensee fails to comply with any term or condition of this Agreement.
+
+3. **Termination by Licensor**: Licensor may terminate this Agreement at any time upon written notice to Licensee.
+
+4. **Effect of Termination**: Upon termination of this Agreement for any reason:
+   - All rights and licenses granted to Licensee under this Agreement shall immediately cease;
+   - Licensee must immediately cease all use of the Software;
+   - Licensee must permanently delete all copies of the Software in its possession or control;
+   - Licensee must certify in writing to Licensor within fifteen (15) days that Licensee has complied with the foregoing obligations.
+
+5. **Survival**: The following provisions shall survive the termination of this Agreement: Definitions, Intellectual Property Ownership, Disclaimer of Warranties, Limitation of Liability, Indemnification, and General Provisions.
+
+## INJUNCTIVE RELIEF
+
+Licensee acknowledges that the Software contains valuable trade secrets and proprietary information of Licensor, that any actual or threatened breach of this Agreement by Licensee will constitute immediate, irreparable harm to Licensor for which monetary damages would be an inadequate remedy. Licensor shall be entitled to immediate injunctive relief in any court of competent jurisdiction for any actual or threatened breach of this Agreement by Licensee, without the necessity of posting bond.
+
+## EXPORT CONTROLS
+
+Licensee shall comply with all applicable export laws, restrictions, and regulations of any United States or foreign agency or authority and shall not export, or allow the export or re-export of the Software in violation of any such laws, restrictions, or regulations.
+
+## GOVERNING LAW AND JURISDICTION
+
+This Agreement shall be governed by and construed in accordance with the laws of the jurisdiction in which Licensor is located, without giving effect to any choice of law or conflict of law provisions. Any legal suit, action, or proceeding arising out of or related to this Agreement shall be instituted exclusively in the courts located in that jurisdiction, and Licensee hereby consents to the personal jurisdiction of such courts.
+
+## WAIVER OF JURY TRIAL
+
+EACH PARTY HEREBY WAIVES ITS RIGHT TO A JURY TRIAL IN ANY LITIGATION ARISING OUT OF OR RELATED TO THIS AGREEMENT.
+
+## SEVERABILITY
+
+If any provision of this Agreement is held to be unenforceable or invalid, such provision shall be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law, and the remaining provisions shall continue in full force and effect.
+
+## ENTIRE AGREEMENT
+
+This Agreement constitutes the entire agreement between the parties with respect to the use of the Software and supersedes all prior or contemporaneous understandings, communications, and agreements, whether written or oral.
+
+## NO WAIVER
+
+The failure of Licensor to enforce any right or provision of this Agreement will not constitute a waiver of such right or provision or of any other rights or provisions under this Agreement.
+
+## ASSIGNMENT
+
+Licensee may not assign or transfer any of its rights or obligations under this Agreement without the prior written consent of Licensor. Licensor may assign this Agreement in connection with a merger, acquisition, corporate reorganization, or sale of all or substantially all of its assets.
+
+## NOTICES
+
+All notices required or permitted under this Agreement shall be in writing and shall be deemed effective upon delivery if sent by email, registered mail, or courier service to the address provided by the respective party.
+
+## FORCE MAJEURE
+
+Licensor shall not be liable for any delay or failure to perform resulting from causes outside its reasonable control, including but not limited to acts of God, war, terrorism, riots, fire, natural disaster, pandemic, or labor disputes.
+
+## HEADINGS
+
+The headings used in this Agreement are for convenience only and shall not be used to construe or interpret this Agreement.
+
+## ACKNOWLEDGMENT
+
+BY USING THE SOFTWARE, LICENSEE ACKNOWLEDGES THAT LICENSEE HAS READ THIS AGREEMENT, UNDERSTANDS IT, AND AGREES TO BE BOUND BY ITS TERMS AND CONDITIONS.
+
+© 2024 Amir Tadrisi - All Rights Reserved 

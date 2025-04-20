@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE `Page` ADD COLUMN `isBlog` BOOLEAN NOT NULL DEFAULT false,
+    ADD COLUMN `isPublished` BOOLEAN NOT NULL DEFAULT false,
+    ADD COLUMN `publishedAt` DATETIME(3) NULL;
