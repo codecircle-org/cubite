@@ -1,0 +1,100 @@
+#cloud-config
+write_files:
+  - path: /root/wait-for-setup
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      while ! host {{domain}}; do
+        echo "Waiting for DNS propagation..."
+        sleep 10
+      done
+      source /root/venv/bin/activate
+
+      # Create Tutor plugin for cookie settings
+      cat > /root/customizations.py << 'EOL'
+      from tutor import hooks
+      
+      hooks.Filters.ENV_PATCHES.add_items([
+          (
+              "openedx-lms-production-settings",
+              """
+      SESSION_COOKIE_DOMAIN = ".{{siteFrontendDomain}}"
+              """
+          ),
+          (
+              "openedx-cms-production-settings",
+              """
+      SESSION_COOKIE_DOMAIN = ".{{siteFrontendDomain}}"
+              """
+          ),
+          (
+              "lms-env",
+              """
+      SESSION_COOKIE_DOMAIN: ".{{siteFrontendDomain}}"
+              """
+          ),
+          (
+              "cms-env",
+              """
+      SESSION_COOKIE_DOMAIN: ".{{siteFrontendDomain}}"
+              """
+          ),
+      ])
+      EOL
+
+      # Replace placeholder with actual domain
+      sed -i "s/{{siteFrontendDomain}}/{{siteFrontendDomain}}/g" /root/customizations.py
+
+      # Install and enable the plugin
+      tutor plugins install /root/customizations.py
+      tutor plugins enable customizations
+      
+      tutor config save \
+        --set CMS_HOST="{{studioDomain}}" \
+        --set LMS_HOST="{{domain}}" \
+        --set ENABLE_HTTPS=true \
+        --set ACTIVATE_HTTPS=true \
+        --set PLATFORM_NAME="{{siteName}}" \
+        --set SMTP_HOST=smtp.resend.com \
+        --set SMTP_PORT=587 \
+        --set SMTP_USE_SSL=false \
+        --set SMTP_USE_TLS=true \
+        --set SMTP_USERNAME="resend" \
+        --set SMTP_PASSWORD="{{resendApiKey}}" \
+        --set DEFAULT_FROM_EMAIL="{{serverEmail}}" \
+        --set CONTACT_EMAIL="{{serverEmail}}"
+      
+      tutor local launch -I
+      # Generate random 16 character password with letters, numbers and symbols
+      PASSWORD=$(openssl rand -base64 12)
+      USERNAME=$(echo {{userEmail}} | cut -d@ -f1)
+      tutor local do createuser --staff --superuser $USERNAME {{userEmail}} --password $PASSWORD
+      tutor local do createuser --staff --superuser devops devops@cubite.io --password $PASSWORD
+
+  - path: /root/create_redirects.py
+    permissions: '0755'
+    content: |
+      from django.contrib.sites.models import Site
+      from django.contrib.redirects.models import Redirect
+
+      site = Site.objects.get(domain="{{domain}}")
+      Redirect.objects.create(
+          site=site,
+          old_path="/",
+          new_path="https://{{siteFrontendDomain}}"
+      )
+      Redirect.objects.create(
+          site=site,
+          old_path="/courses",
+          new_path="https://{{siteFrontendDomain}}/courses"
+      )
+
+  - path: /root/setup_redirects.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      docker exec -i tutor_local-lms-1 ./manage.py lms shell < /root/create_redirects.py
+
+runcmd:
+  - /root/wait-for-setup
+  - /root/setup_redirects.sh

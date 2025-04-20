@@ -1,0 +1,9 @@
+{
+    "DashboardCourseCard": {
+        "resume_course_button": "Entre al Curso"
+    },
+    "headerLink": {
+        "Login": "Inciar session",
+        "Register": "Registerte"
+    }
+}

@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Editor js css */
+
+.ce-block__content {
+  @apply prose;
+}
+
+.ce-block__content {
+  max-width: 800px;
+}
+
+.ce-toolbar__content {
+  max-width: 800px;
+}
+
+.ce-block__content :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.ce-toolbar__actions {
+  right: calc(100% + -6px) !important;
+}
+
+/* marker */
+
+.cdx-marker {
+  background: rgba(245, 235, 111, 0.29);
+  padding: 3px 0;
+}
+
+.ce-header {
+  padding: 0.6em 0 3px;
+  margin: 0;
+  line-height: 1.25em;
+  outline: none;
+}
+
+.ce-header p,
+.ce-header div {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/**
+ * Styles for Plugin icon in Toolbar
+ */
+
+.ce-header[contentEditable="true"][data-placeholder]::before {
+  position: absolute;
+  content: attr(data-placeholder);
+  color: #707684;
+  font-weight: normal;
+  display: none;
+  cursor: text;
+}
+
+.ce-header[contentEditable="true"][data-placeholder]:empty::before {
+  display: block;
+}
+
+.ce-header[contentEditable="true"][data-placeholder]:empty:focus::before {
+  display: none;
+}
+
+/* inline code */
+
+.inline-code {
+  background: rgba(250, 239, 240, 0.78);
+  color: #b44437;
+  padding: 3px 4px;
+  border-radius: 5px;
+  margin: 0 1px;
+  font-family: inherit;
+  font-size: 0.86em;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* underline */
+.cdx-underline {
+  text-decoration: underline;
+}
+
+/* strikethrough */
+.cdx-strikethrough {
+  text-decoration: line-through;
+}
+
+/* tooltip */
+.tooltip-tool__input {
+  border: 0;
+  border-radius: 0 0 4px 4px;
+  border-top: 1px solid rgba(201, 201, 204, 0.48);
+}
+
+.tooltip-tool__span {
+  padding: 3px;
+  border-radius: 6px;
+}
+
+.tooltip-tool__underline {
+  text-decoration: underline;
+}
+
+.tooltip-color::before {
+  background-color: transparent;
+}
+
+.tooltip-color::after {
+  background-color: transparent;
+}
+
+.tooltip-text-color {
+  color: transparent;
+}
+
+.cdx-tooltip {
+  display: inline-block;
+}
+
+/* delimiter */
+.ce-delimiter {
+  line-height: 1.6em;
+  width: 100%;
+  text-align: center;
+}
+
+.ce-delimiter:before {
+  display: inline-block;
+  content: "***";
+  font-size: 30px;
+  line-height: 65px;
+  height: 30px;
+  letter-spacing: 0.2em;
+}
+
+.rsw-ce ol {
+  list-style-type: decimal; /* Use numbers for ordered lists */
+  margin-left: 20px; /* Add some left margin for indentation */
+  padding-left: 0; /* Remove default padding */
+}
+
+.rsw-ce ul {
+  list-style-type: disc; /* Use bullets for unordered lists */
+  margin-left: 20px; /* Add some left margin for indentation */
+  padding-left: 0; /* Remove default padding */
+}
+
+.rsw-ce li {
+  margin-bottom: 5px; /* Add some space between list items */
+}
+
+.rsw-ce a {
+  color: blue; /* Set link color */
+  text-decoration: underline; /* Underline links */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.rsw-ce a:hover {
+  color: darkblue; /* Darken link color on hover */
+}

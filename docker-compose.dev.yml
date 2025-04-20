@@ -1,0 +1,44 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=mysql://root:${MYSQL_ROOT_PASSWORD}@db:3306/codecircle
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: /usr/local/bin/docker-entrypoint.sh
+    networks:
+      - codecircle_network
+
+  db:
+    image: mysql:9.1.0
+    restart: always
+    environment:
+      - MYSQL_DATABASE=codecircle
+      - MYSQL_USER=${MYSQL_USER:-admin}
+      - MYSQL_ROOT_USER=root
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - codecircle_network
+
+volumes:
+  mysql-data:
+    name: codecircle_mysql_data
+
+networks:
+  codecircle_network:
+    name: codecircle_network
+    driver: bridge

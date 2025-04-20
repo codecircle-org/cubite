@@ -1,0 +1,411 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.1.x", "linux-musl-openssl-3.0.x", "linux-musl-arm64-openssl-3.0.x", "linux-musl-arm64-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  MANAGER
+}
+
+model User {
+  id                 String             @id @default(cuid())
+  name               String
+  email              String             @unique
+  emailVerified      DateTime?
+  hashedPassword     String?
+  username           String             @unique
+  isActive           Boolean
+  organizations      Organization[]     @relation("UserOrganization")
+  administratedSites Site[]             @relation("SiteAdmins")
+  siteRoles          SiteRole[]
+  image              String?
+  bio                String?            @db.Text
+  accounts           Account[]
+  sessions           Session[]
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  CourseInstructor   CourseInstructor[]
+  CourseEnrollment   CourseEnrollment[]
+  CourseProgress     CourseProgress[]
+  CourseContent      CourseContent[]    @relation("ContentAuthor")
+  PageAuthor         PageAuthor[]
+  PageContent        PageContent[]      @relation("PageContentAuthor")
+  extraInfo          Json?
+  openedxUsername    String?
+  certificates       Certificate[]
+  isGlobalAdmin        Boolean            @default(false)
+  @@map("users")
+}
+
+model PasswordResetToken {
+  id String @id @default(cuid())
+  email String
+  token String @unique @db.VarChar(255)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Organization {
+  id    String @id @default(cuid())
+  name  String @unique
+  users User[] @relation("UserOrganization")
+}
+
+model Site {
+  id                String             @id @default(cuid())
+  name              String
+  logo              String?
+  logoDark          String?
+  favicon           String?
+  domainName        String             @unique
+  customDomain      String?            @unique
+  admins            User[]             @relation("SiteAdmins")
+  siteRoles         SiteRole[]
+  themeName         String
+  darkModeTheme     String?
+  courses           Course[]
+  pages             Page[]
+  features          Feature[]          @relation("SiteFeatures")
+  isActive          Boolean
+  frontendConfig    Json
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  courseEnrollments CourseEnrollment[]
+  CourseProgress    CourseProgress[]
+  layout            Json?
+  googleAnalytics   String?
+  googleTagManager  String?
+  extraRegistrationFields Json? 
+  languages             Language[] @relation("SiteLanguages")
+  isOpenedxSite         Boolean    @default(false)
+  openedxSiteUrl        String?    @default("")
+  openedxLtiConsumerKey String?    @db.Text
+  openedxLtiConsumerSecret String? @db.Text
+  openedxOauthClientId String?    @db.Text
+  openedxOauthClientSecret String? @db.Text
+  isNewOpenedxSite      Boolean    @default(false)
+  serverId              String?    @default("")
+  serverIp              String?    @default("")
+  smtpEmailHost          String?    @default("")
+  smtpEmailPort          Int?       @default(0)
+  smtpEmailUseSsl        Boolean?   @default(false)
+  smtpEmailUseTls         Boolean?   @default(false)
+  smtpEmailUsername      String?    @default("")
+  smtpEmailPassword      String?    @default("")
+  smtpDefaultFromEmail   String?    @default("")
+  contactEmail           String?    @default("")
+  fontFamily             String?    @default("")
+  registrationForm      Json?    @default("{}")
+  registrationFormVisible Boolean?   @default(true)
+  loginForm              Json?    @default("{}")
+  loginFormVisible       Boolean?   @default(true)
+  certificates           Certificate[]
+  customCss             String?    @db.Text 
+  stripeSecretKey       String?    @db.Text
+  stripePublishableKey   String?    @db.Text
+  stripeWebhookSecret   String?    @db.Text
+  ssoProviders           Json?    @default("{}")
+  @@map("sites")
+}
+
+model Language {
+  id     String @id @default(cuid())
+  name   String
+  code   String @unique
+  siteId String
+  sites  Site[]  @relation("SiteLanguages")
+
+}
+
+model SiteRole {
+  id     String @id @default(cuid())
+  userId String
+  siteId String
+  role   Role
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, siteId])
+  @@map("site_role")
+}
+
+model Course {
+  id                     String             @id @default(cuid())
+  name                   String
+  description            String?            @db.Text
+  banner                 String?            @db.Text
+  subjects               Subject[]          @relation("CourseSubjects")
+  topics                 Topic[]            @relation("CourseTopics")
+  duration               Int?
+  startDate              DateTime?
+  endDate                DateTime?
+  enrollmentStartDate    DateTime?
+  enrollmentEndDate      DateTime?
+  price                  Float?
+  coverImage             String?
+  introVideo             String?
+  instructors            CourseInstructor[]
+  sites                  Site[]
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+  courseEnrollments      CourseEnrollment[]
+  CourseProgress         CourseProgress[]
+  level                  String?
+  certificateTitle       String?
+  certificateDescription String?
+  certificateBackground  String?
+  xp                     Int?
+  externalId             String?
+  externalUrl            String?
+  externalRootUrl        String?
+  externalBlocksUrl      String?
+  externalImageUrl       String?
+  contents               CourseContent[]    @relation("CourseContents")
+  payments               Payment[]
+  requirements           Json?
+  isWaitList             Boolean            @default(false)
+  waitListMessage        String?            @db.Text
+  isOnDemand             Boolean            @default(false)
+  isVisibleInCatalog     Boolean            @default(true)
+  isSyllabusVisible     Boolean            @default(true)
+  certificates           Certificate[]
+  achievementRecordsTemplate AchievementRecordsTemplate[]
+}
+
+model CourseProgress {
+  id                String   @id @default(cuid())
+  userId            String
+  courseId          String
+  siteId            String
+  lastUnitId        String
+  progress          Json?
+  progressPercentage Int      @default(0)
+  updatedAt         DateTime @default(now()) @updatedAt
+
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  site   Site   @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, userId, siteId])
+  @@index([userId])
+  @@index([siteId])
+}
+
+model Page {
+  id          String      @id @default(cuid())
+  title       String
+  description String?     @db.Text
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  permalink   String
+  subjects    Subject[]   @relation("PageSubjects")
+  topics      Topic[]     @relation("PageTopics")
+  image       String?
+  sites       Site[]
+  blurb       String?
+  authors     PageAuthor[]
+  contents    PageContent[] @relation("PageContents")
+  isProtected Boolean      @default(false)
+  isPublished Boolean       @default(false)
+  publishedAt DateTime?
+  isBlog      Boolean       @default(false)
+}
+
+model CourseContent {
+  id        String   @id @default(cuid())
+  content   Json
+  version   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  courseId  String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade, name: "ContentAuthor")
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade, name: "CourseContents")
+
+  @@unique([courseId, version])
+  @@index([authorId])
+  @@index([courseId])
+}
+
+
+model PageContent {
+  id        String   @id @default(cuid())
+  content   Json
+  version   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  pageId    String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade, name: "PageContentAuthor")
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade, name: "PageContents")
+
+  @@unique([pageId, version])
+  @@index([authorId])
+  @@index([pageId])
+}
+
+model CourseInstructor {
+  courseId   String
+  userId     String
+  assignedAt DateTime @default(now())
+
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([courseId, userId])
+  @@index([userId])
+}
+
+model PageAuthor {
+  pageId String
+  userId String
+
+  page Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([pageId, userId])
+  @@index([userId])
+
+}
+
+model Subject {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  courses Course[] @relation("CourseSubjects")
+    pages   Page[]   @relation("PageSubjects")
+
+}
+
+model Topic {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  courses Course[] @relation("CourseTopics")
+    pages   Page[]   @relation("PageTopics")
+
+}
+
+model CourseEnrollment {
+  courseId   String
+  userId     String
+  siteId     String
+  enrolledAt DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  expiresAt  DateTime?
+  lastVisitedContent String? @db.Text
+  enrolledInOpenedxCourse Boolean            @default(false)
+  isWaitListed Boolean            @default(false)
+  status String?               @default("pending")
+
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  site   Site   @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, userId, siteId])
+  @@index([userId])
+  @@index([siteId])
+}
+
+model Feature {
+  id    String @id @default(cuid())
+  name  String
+  sites Site[] @relation("SiteFeatures")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Payment {
+  id            String      @id @default(cuid())
+  stripeId      String      @unique // checkout.session.id
+  paymentIntent String      // payment_intent
+  courseId      String
+  amount        Int         // amount_total in cents
+  amountSubtotal Int?      // amount_subtotal in cents
+  amountDiscounted Int?      // amount_discount in cents
+  amountShipping Int?      // amount_shipping in cents
+  amountTax      Int?      // amount_tax in cents
+  currency      String
+  email         String      // customer_details.email
+  customerName  String      // customer_details.name
+  status        String      // payment_status
+  siteId        String      @default("")
+  createdAt     DateTime    @default(now())
+  isEnrolled    Boolean     @default(false)
+  
+  // Relations
+  course        Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  @@index([courseId])
+  @@index([email])
+  @@index([status])
+}
+
+model Certificate {
+  id String @id @default(cuid())
+  courseId String
+  userId String
+  siteId String
+  certificateTemplateId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  grade Float?
+  qrCode String?
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
+  site Site @relation(fields: [siteId], references: [id])
+}
+
+model AchievementRecordsTemplate {
+  id String @id @default(cuid())
+  name String
+  description String?
+  permalink String? @unique
+  courseName String?
+  content String? @db.Text
+  courseId String
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
